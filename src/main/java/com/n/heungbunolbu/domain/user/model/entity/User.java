@@ -1,14 +1,13 @@
 package com.n.heungbunolbu.domain.user.model.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Builder;
+import lombok.Data;
 
 import javax.persistence.*;
 
-@Getter
-@Setter
+@Data
 @Entity
-public class Member {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,5 +24,25 @@ public class Member {
     @Column(name = "user_job")
     private String userJob;
 
+    @Builder
+    public User(Long id, String userName, String userEmail, String userPw, String userPhone, String userAdress, String userJob) {
+        this.id = id;
+        this.userName = userName;
+        this.userEmail = userEmail;
+        this.userPw = userPw;
+        this.userPhone = userPhone;
+        this.userAdress = userAdress;
+        this.userJob = userJob;
+    }
 
+    public User() {
+
+    }
+
+    public void userUpdate(String userPw, String userPhone, String userAdress, String userJob){
+        this.userPw = userPw;
+        this.userPhone = userPhone;
+        this.userAdress = userAdress;
+        this.userJob = userJob;
+    }
 }

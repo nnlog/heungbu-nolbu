@@ -2,13 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>로그인 페이지</title>
 </head>
 <body>
-<h1>로그인 페이지</h1>
-
-<div>
-    <a href="/user/join">회원가입</a>
-</div>
+<form name="loginForm" method="post" action="/user/login">
+    <div class="container">
+        <div class="insert">
+            <table>
+                <caption><h2>로그인</h2></caption>
+                <tr>
+                    <td class="col1">이메일</td>
+                    <td class="col2"><input type="text" name="userEmail"></td>
+                </tr>
+                <tr>
+                    <td class="col1">비밀번호</td>
+                    <td class="col2"><input type="password" name="userPw" maxlength="16"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="login">
+            <tr>
+                <input class="btn1" type="button" value="아이디 찾기" onclick="">
+                <input class="btn2" type="button" value="비밀번호 찾기" onclick="">
+                <input class="btn3" type="button" value="회원가입" onclick="location.href='/user/join'">
+            </tr>
+            <tr>
+                <input class="btn4" type="button" value="로그인" onclick="nullCheck()">
+            </tr>
+        </div>
+    </div>
+</form>
 </body>
+<script>
+    function nullCheck(){
+        let form = Document.loginForm
+
+        if(form.userEmail.value == ""){
+            alert('이메일을 입력하세요.');
+            form.userEmail.focus();
+            return;
+        }
+        if(form.userPw.value == ""){
+            alert('비밀번호를 입력하세요.');
+            form.userPw.focus();
+            return;
+        }
+        form.submit();
+    }
+</script>
 </html>
