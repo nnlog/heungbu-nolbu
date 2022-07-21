@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>로그인 페이지</title>
@@ -27,27 +27,10 @@
                 <input class="btn3" type="button" value="회원가입" onclick="location.href='/user/join'">
             </tr>
             <tr>
-                <input class="btn4" type="button" value="로그인" onclick="nullCheck()">
+                <input class="btn4" type="submit" value="로그인">
             </tr>
         </div>
     </div>
 </form>
 </body>
-<script>
-    function nullCheck(){
-        let form = Document.loginForm
-
-        if(form.userEmail.value == ""){
-            alert('이메일을 입력하세요.');
-            form.userEmail.focus();
-            return;
-        }
-        if(form.userPw.value == ""){
-            alert('비밀번호를 입력하세요.');
-            form.userPw.focus();
-            return;
-        }
-        form.submit();
-    }
-</script>
 </html>

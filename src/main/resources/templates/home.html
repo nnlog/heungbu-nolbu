@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header>
+    <ul>
+        <h1 style="text-align: left">홈 화면</h1>
+        <h3 th:switch="${status}">
+            <span th:case="'true'">[[${user.userName}]]님,</span>
+        </h3>
+        <h4 th:switch="${status}">
+            <span th:case="'true'"><a href="/user/logout">로그아웃</a></span>
+            <span th:case="*"><a href="/user/login">로그인</a></span>
+        </h4>
+    </ul>
+</header>
+<main>
+    <ul>
+        post
+    </ul>
+</main>
+<footer>
+
+</footer>
+
+</body>
+</html>

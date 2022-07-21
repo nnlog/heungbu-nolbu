@@ -4,8 +4,13 @@ import com.n.heungbunolbu.domain.user.model.dto.UserDTO;
 import com.n.heungbunolbu.domain.user.model.entity.User;
 import com.n.heungbunolbu.domain.user.service.UserService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 @Controller
@@ -27,7 +32,7 @@ public class UserController {
 
     // 회원가입
     @PostMapping("/join")
-    public String userJoin(UserDTO userDTO){
+    public String userJoin(UserDTO userDTO) throws Exception{
         User user = userDTO.toEntity();
         userService.join(user);
 
@@ -42,16 +47,30 @@ public class UserController {
 
     // 로그인
     @PostMapping("/login")
-    public String userLogin(UserDTO userDTO){
-        String email = userDTO.getUserEmail();
-        String pw = userDTO.getUserPw();
+    public String userLogin(@RequestParam("userEmail") String email,
+                            @RequestParam("userPw") String pw,
+                            Model model) throws Exception{
+        String path="";
         Optional<User> user = userService.getUserInfoByEmail(email);
         if(user.get().getUserPw().equals(pw)){
-            return "home";
+            model.addAttribute("user", user.get());
+            model.addAttribute("status", "true");
+            path = "/home";
         }
         else {
-            return "redirect:user/login";
+            path = "redirect:/user/login";
         }
 
+        return path;
+
+    }
+
+    // 로그아웃
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest req) throws Exception{
+        HttpSession session = req.getSession();
+        session.invalidate();
+
+        return "redirect:/";
     }
 }

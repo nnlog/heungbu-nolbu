@@ -46,6 +46,7 @@ public class UserService {
         return userRepository.findById(id);
     }
 
+
     // email로 회원 조회
     public Optional<User> getUserInfoByEmail(String email){
         return userRepository.findByUserEmail(email);
