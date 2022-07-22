@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .page-wrapper{
+            width: 80%;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <header class="main-header">
+            <div>
+                <ul>
+                    <li><img src="/img/HeungbuAndNolbu.PNG" width="200px" height="150px"></li>
+                    <li>
+                        <h3 th:switch="${status}">
+                            <span th:case="'true'">[[${user.userName}]]님,</span>
+                        </h3>
+                        <h4 th:switch="${status}">
+                            <span th:case="'true'"><a href="/user/logout">로그아웃</a></span>
+                            <span th:case="*"><a href="/user/login">로그인</a></span>
+                        </h4>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <nav id="main-navigation">
+            <div class="search">
+<!--                <input type="text" value="검색어를 입력하세요.">-->
+<!--                <input type="button" value="검색">-->
+            </div>
+        </nav>
+        <div id="content">
+            <section id="main-section">
+
+            </section>
+            <aside id="main-aside">
+
+            </aside>
+        </div>
+        <footer id="main-footer">
+
+        </footer>
+    </div>
+
+</body>
+</html>

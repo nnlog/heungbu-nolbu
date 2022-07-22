@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인 페이지</title>
+    <style>
+
+        .find{
+            width: 800px;
+            text-align: center;
+            padding: 25px;
+            border-bottom: 1px solid #D2B48C;
+            margin: auto;
+        }
+
+        .form-table{
+            height: 150px;
+            width: 900px;
+            border-top: 3px solid #D2B48C;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        td{
+            border-bottom: 1px dotted black;
+        }
+
+        caption{
+            text-align: left;
+        }
+
+        .col1{
+            background: #e8e8e8;
+            padding: 10px;
+            text-align: right;
+            font-weight: bold;
+            font-size: 0.8em;
+        }
+
+        .col2{
+            text-align: left;
+            padding: 5px;
+        }
+
+        .btn2{
+            height: 35px;
+            width: 120px;
+            margin-right: 10px;
+            background-color: white;
+            border: 1px solid darkgray;
+        }
+
+        .btn1{
+            height: 35px;
+            width: 120px;
+            background-color: white;
+            border: 2px solid #D2B48C;
+        }
+    </style>
+</head>
+<body>
+<form name="loginForm" method="post" action="/user/findEmail">
+    <div class="container">
+        <div class="insert">
+            <table class="form-table">
+                <caption><h2>이메일 찾기</h2></caption>
+                <tr>
+                    <td class="col1">이름</td>
+                    <td class="col2"><input type="text" name="userName"></td>
+                </tr>
+                <tr>
+                    <td class="col1">휴대폰 번호</td>
+                    <td class="col2"><input type="text" name="userPhone" maxlength="16"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="find">
+            <input type="submit" class="btn1" value="이메일 찾기" onclick="location.href='/user/findEmail'">
+            <input type="button" class="btn2" value="취소" onclick="location.href='/user/login'">
+        </div>
+    </div>
+</form>
+</body>
+</html>
