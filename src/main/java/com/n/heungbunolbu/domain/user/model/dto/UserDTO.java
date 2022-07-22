@@ -28,12 +28,12 @@ public class UserDTO {
     }
 
     public UserDTO(User user){
-        userName = user.getUserName();
-        userEmail = user.getUserEmail();
-        userPw = user.getUserPw();
-        userPhone = user.getUserPhone();
-        userAdress = user.getUserAdress();
-        userJob = user.getUserJob();
+        this.userName = user.getUserName();
+        this.userEmail = user.getUserEmail();
+        this.userPw = user.getUserPw();
+        this.userPhone = user.getUserPhone();
+        this.userAdress = user.getUserAdress();
+        this.userJob = user.getUserJob();
     }
 
     public User toEntity(){

@@ -6,12 +6,12 @@ import com.n.heungbunolbu.domain.user.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/user")
@@ -50,14 +50,16 @@ public class UserController {
     public String userLogin(@RequestParam("userEmail") String email,
                             @RequestParam("userPw") String pw,
                             Model model) throws Exception{
-        String path="";
-        Optional<User> user = userService.getUserInfoByEmail(email);
-        if(user.get().getUserPw().equals(pw)){
-            model.addAttribute("user", user.get());
-            model.addAttribute("status", "true");
-            path = "/home";
-        }
-        else {
+        String path="/home";
+        User user = userService.getUserInfoByEmail(email).orElse(new User());
+
+        UserDTO userDTO = new UserDTO(user);
+        model.addAttribute("user", userDTO);
+        model.addAttribute("status", "true");
+
+        if(userDTO.getUserPw() == null || userDTO.getUserPw().equals("")){
+            path = "redirect:/user/login";
+        } else if(!userDTO.getUserPw().equals(pw)){
             path = "redirect:/user/login";
         }
 
@@ -72,5 +74,23 @@ public class UserController {
         session.invalidate();
 
         return "redirect:/";
+    }
+
+    // 이메일 찾기
+    @GetMapping("/findEmail")
+    public String findEmailForm(){
+        return "/user/findEmailForm";
+    }
+
+    // 이메일 찾기
+    @PostMapping("/findEmail")
+    public String findEmail(@RequestParam String userName, @RequestParam String userPhone, Model model){
+        List<User> users = userService.findEmail(userName, userPhone);
+
+        List<UserDTO> userDTOList = users.stream().map(m -> new UserDTO(m)).collect(Collectors.toList());
+        model.addAttribute("users", userDTOList);
+        System.out.println(userDTOList);
+        System.out.println(users);
+        return "/user/findEmail";
     }
 }

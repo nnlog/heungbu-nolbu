@@ -5,7 +5,7 @@
     <title>로그인 페이지</title>
     <style>
 
-        .login{
+        .find{
             width: 800px;
             text-align: center;
             padding: 25px;
@@ -42,7 +42,7 @@
             padding: 5px;
         }
 
-        .btn1{
+        .btn2{
             height: 35px;
             width: 120px;
             margin-right: 10px;
@@ -50,7 +50,7 @@
             border: 1px solid darkgray;
         }
 
-        .btn2{
+        .btn1{
             height: 35px;
             width: 120px;
             background-color: white;
@@ -59,32 +59,24 @@
     </style>
 </head>
 <body>
-<form name="loginForm" method="post" action="/user/login">
+<form name="loginForm" method="post" action="/user/findEmail">
     <div class="container">
         <div class="insert">
             <table class="form-table">
-                <caption><h2>로그인</h2></caption>
+                <caption><h2>이메일 찾기</h2></caption>
                 <tr>
-                    <td class="col1">이메일</td>
-                    <td class="col2"><input type="text" name="userEmail"></td>
+                    <td class="col1">이름</td>
+                    <td class="col2"><input type="text" name="userName"></td>
                 </tr>
                 <tr>
-                    <td class="col1">비밀번호</td>
-                    <td class="col2"><input type="password" name="userPw" maxlength="16"></td>
+                    <td class="col1">휴대폰 번호</td>
+                    <td class="col2"><input type="text" name="userPhone" maxlength="16"></td>
                 </tr>
             </table>
         </div>
-        <div class="login">
-            <table>
-                <tr>
-                    <input class="btn1" type="button" value="이메일 찾기" onclick="location.href='/user/findEmail'">
-                    <input class="btn1" type="button" value="비밀번호 찾기" onclick="">
-                    <input class="btn1" type="button" value="회원가입" onclick="location.href='/user/join'">
-                </tr>
-                <tr>
-                    <input class="btn2" type="submit" value="로그인">
-                </tr>
-            </table>
+        <div class="find">
+            <input type="submit" class="btn1" value="이메일 찾기" onclick="location.href='/user/findEmail'">
+            <input type="button" class="btn2" value="취소" onclick="location.href='/user/login'">
         </div>
     </div>
 </form>
